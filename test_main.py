@@ -63,3 +63,11 @@ def test_empty_file(empty_file):
     sorted_by_area, sorted_by_population = sort_data(empty_file)
     assert sorted_by_area == []
     assert sorted_by_population == []
+
+@pytest.fixture
+def invalid_file(temp_file):
+    return temp_file("Canada,805291,35589391\nBelgium,text_not_number,8589195")
+
+def test_invalid_data(invalid_file):
+    with pytest.raises(ValueError):
+        sort_data(invalid_file)
