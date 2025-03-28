@@ -54,3 +54,12 @@ def test_sort_data(temp_file, file_content, expected_by_area, expected_by_popula
 
     assert sorted_by_area == expected_by_area
     assert sorted_by_population == expected_by_population
+
+@pytest.fixture
+def empty_file(temp_file):
+    return temp_file("")
+
+def test_empty_file(empty_file):
+    sorted_by_area, sorted_by_population = sort_data(empty_file)
+    assert sorted_by_area == []
+    assert sorted_by_population == []
